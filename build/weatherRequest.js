@@ -1,13 +1,12 @@
-const USER_AGENT = process.env.USER_AGENT;
 // Helper function for making NWS API requests
-export async function makeNWSRequest(url) {
-    if (!USER_AGENT) {
-        console.error("Missing required environment variable: USER_AGENT");
+export async function makeNWSRequest(url, userAgent) {
+    if (!userAgent) {
+        console.error("Missing required parameter: userAgent");
         return null;
     }
-    console.log("Making NWS request to:", USER_AGENT);
+    console.log("Making NWS request to:", url);
     const headers = {
-        "User-Agent": USER_AGENT,
+        "User-Agent": userAgent,
         Accept: "application/geo+json",
     };
     try {

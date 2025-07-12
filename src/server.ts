@@ -8,7 +8,7 @@ import {
 	ForecastResponse 
 } from "./weatherContracts.js";
 
-export function registerWeatherTools(server: McpServer, NWS_API_BASE: string) {
+export function registerWeatherTools(server: McpServer, NWS_API_BASE: string, USER_AGENT: string) {
 	// Register weather tools
 	server.tool(
 		"get-alerts",
@@ -19,7 +19,7 @@ export function registerWeatherTools(server: McpServer, NWS_API_BASE: string) {
 		async ({ state }) => {
 			const stateCode = state.toUpperCase();
 			const alertsUrl = `${NWS_API_BASE}/alerts?area=${stateCode}`;
-			const alertsData = await makeNWSRequest<AlertsResponse>(alertsUrl);
+			const alertsData = await makeNWSRequest<AlertsResponse>(alertsUrl, USER_AGENT);
 
 			if (!alertsData) {
 				return {
@@ -72,7 +72,7 @@ export function registerWeatherTools(server: McpServer, NWS_API_BASE: string) {
 		async ({ latitude, longitude }) => {
 			// Get grid point data
 			const pointsUrl = `${NWS_API_BASE}/points/${latitude.toFixed(4)},${longitude.toFixed(4)}`;
-			const pointsData = await makeNWSRequest<PointsResponse>(pointsUrl);
+			const pointsData = await makeNWSRequest<PointsResponse>(pointsUrl, USER_AGENT);
 
 			if (!pointsData) {
 				return {
@@ -98,7 +98,7 @@ export function registerWeatherTools(server: McpServer, NWS_API_BASE: string) {
 			}
 
 			// Get forecast data
-			const forecastData = await makeNWSRequest<ForecastResponse>(forecastUrl);
+			const forecastData = await makeNWSRequest<ForecastResponse>(forecastUrl, USER_AGENT);
 			if (!forecastData) {
 				return {
 					content: [

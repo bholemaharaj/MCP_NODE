@@ -1,13 +1,13 @@
 import { z } from "zod";
 import { makeNWSRequest, formatAlert } from "./weatherRequest.js";
-export function registerWeatherTools(server, NWS_API_BASE) {
+export function registerWeatherTools(server, NWS_API_BASE, USER_AGENT) {
     // Register weather tools
     server.tool("get-alerts", "Get weather alerts for a state", {
         state: z.string().length(2).describe("Two-letter state code (e.g. CA, NY)"),
     }, async ({ state }) => {
         const stateCode = state.toUpperCase();
         const alertsUrl = `${NWS_API_BASE}/alerts?area=${stateCode}`;
-        const alertsData = await makeNWSRequest(alertsUrl);
+        const alertsData = await makeNWSRequest(alertsUrl, USER_AGENT);
         if (!alertsData) {
             return {
                 content: [
@@ -50,7 +50,7 @@ export function registerWeatherTools(server, NWS_API_BASE) {
     }, async ({ latitude, longitude }) => {
         // Get grid point data
         const pointsUrl = `${NWS_API_BASE}/points/${latitude.toFixed(4)},${longitude.toFixed(4)}`;
-        const pointsData = await makeNWSRequest(pointsUrl);
+        const pointsData = await makeNWSRequest(pointsUrl, USER_AGENT);
         if (!pointsData) {
             return {
                 content: [
@@ -73,7 +73,7 @@ export function registerWeatherTools(server, NWS_API_BASE) {
             };
         }
         // Get forecast data
-        const forecastData = await makeNWSRequest(forecastUrl);
+        const forecastData = await makeNWSRequest(forecastUrl, USER_AGENT);
         if (!forecastData) {
             return {
                 content: [
