@@ -5,6 +5,7 @@ export async function makeNWSRequest(url) {
         console.error("Missing required environment variable: USER_AGENT");
         return null;
     }
+    console.log("Making NWS request to:", USER_AGENT);
     const headers = {
         "User-Agent": USER_AGENT,
         Accept: "application/geo+json",

@@ -9,6 +9,7 @@ export async function makeNWSRequest<T>(url: string): Promise<T | null> {
 		return null;
 	}
 
+	console.log("Making NWS request to:", USER_AGENT);
 	const headers = {
 		"User-Agent": USER_AGENT,
 		Accept: "application/geo+json",
