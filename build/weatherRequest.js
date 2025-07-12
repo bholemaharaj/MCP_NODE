@@ -1,4 +1,4 @@
-const USER_AGENT = "weather-app/1.0";
+const USER_AGENT = process.env.USER_AGENT;
 // Helper function for making NWS API requests
 export async function makeNWSRequest(url) {
     if (!USER_AGENT) {

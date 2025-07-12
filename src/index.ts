@@ -1,10 +1,10 @@
-// import { config } from "dotenv";
+import { config } from "dotenv";
 
-// // Load environment variables at application startup
-// config();
+// Load environment variables at application startup
+config();
 
 // Check for required environment variables
-const NWS_API_BASE = "https://api.weather.gov";
+const NWS_API_BASE = process.env.NWS_API_BASE;
 console.log("NWS_API_BASE:", NWS_API_BASE);
 
 if (!NWS_API_BASE) {

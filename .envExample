@@ -1,0 +1,8 @@
+# Environment Variables Example
+# Copy this file to .env and update the values as needed
+
+# National Weather Service API Base URL
+NWS_API_BASE=https://api.weather.gov
+
+# User Agent for API requests (required by NWS API)
+USER_AGENT=weather-app/1.0

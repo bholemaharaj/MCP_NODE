@@ -1,6 +1,6 @@
 import { AlertFeature } from "./weatherContracts.js";
 
-const USER_AGENT = "weather-app/1.0";
+const USER_AGENT = process.env.USER_AGENT;
 
 // Helper function for making NWS API requests
 export async function makeNWSRequest<T>(url: string): Promise<T | null> {

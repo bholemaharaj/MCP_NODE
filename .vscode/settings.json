@@ -1,5 +1,13 @@
 {
 	"cSpell.words": [
 		"modelcontextprotocol"
-	]
+	],
+	"chat.mcp.serverSampling": {
+		"MCP_Node/.vscode/mcp.json: salil-weather-mcp-server": {
+			"allowedModels": [
+				"github.copilot-chat/gpt-4.1",
+				"github.copilot-chat/claude-sonnet-4"
+			]
+		}
+	}
 }
