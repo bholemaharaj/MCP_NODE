@@ -1,0 +1,10 @@
+{
+	"servers": {
+		"salil-weather-mcp-server": {
+			"command": "node",
+			"args": [
+				"./build/index.js"
+			]
+		}
+	}
+}
