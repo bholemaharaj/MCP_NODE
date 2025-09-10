@@ -273,3 +273,18 @@ This project includes VS Code configuration for:
 - **src/server.ts**: Registers weather tools and handles tool logic
 - **src/weatherContracts.ts**: TypeScript interfaces for API responses
 - **src/weatherRequest.ts**: Utility functions for making API requests
+
+```mermaid
+sequenceDiagram
+    participant User
+    participant AI as AI (Claude / ChatGPT / Copilot Chat)
+    participant MCP as Weather MCP Server
+    participant NWS as National Weather Service API
+
+    User->>AI: "What’s the weather in DC tomorrow?"
+    AI->>MCP: Call tool "get-forecast(lat, lon)"
+    MCP->>NWS: Fetch forecast data (points + forecast endpoints)
+    NWS-->>MCP: JSON weather forecast
+    MCP-->>AI: MCP response { content: [ { type: "text", text: "...forecast..." } ] }
+    AI-->>User: "Tomorrow in DC: 72°F, sunny with light NW wind."
+```
